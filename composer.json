@@ -77,7 +77,6 @@
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
-            "chmod -R 777 public/ src/ templates/"
         ],
         "post-update-cmd": [
             "@auto-scripts"
