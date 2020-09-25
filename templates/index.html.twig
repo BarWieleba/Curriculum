@@ -2,7 +2,7 @@
 
 {% block body %}
     <style>
-        .my_bg_1{
+        .my_bg_1 {
             /*background-color: #b43bdb;*/
             background-image: url("images/bg.png");
             background-size: cover;
@@ -11,45 +11,56 @@
             background-repeat: no-repeat;
             color: white;
         }
-        .blur{
+
+        .blur {
             background: #292929;
             opacity: 1%;
             backdrop-filter: blur(8px);
             height: 100vh;
         }
-        .my_bg_2{
+
+        .my_bg_2 {
             background: transparent;
         }
 
-        .my_bg_3{
+        .my_bg_3 {
             background-image: url("images/bg_card_2_blur.png");
             background-attachment: fixed;
             height: 300px;
         }
-        .animatioFadeIn{
+
+        .animatioFadeIn {
             animation: fade-in 2s forwards;
         }
-        #welcome{
+
+        #welcome {
             animation-delay: 0s;
         }
-        #aboutMe{
+
+        #aboutMe {
             opacity: 0;
             animation-delay: 1s;
         }
-        .fontStyle{
+
+        .fontStyle {
             font-weight: 300;
             line-height: 1.2;
         }
-        .fontSize{
+
+        .fontSize {
             font-size: 2.5rem;
         }
 
         @keyframes fade-in {
-            from {opacity: 0;}
-            to   {opacity: 1;}
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
-        .sideNav{
+        .sideNav {
             height: 100%;
             width: 0;
             position: fixed;
@@ -61,7 +72,8 @@
             padding-top: 60px;
             transition: 0.5s;
         }
-        .sideNav a{
+
+        .sideNav a {
             padding: 8px 8px 8px 32px;
             text-decoration: none;
             font-size: 25px;
@@ -69,10 +81,12 @@
             display: block;
             transition: 0.3s;
         }
-        .sideNav a:hover{
+
+        .sideNav a:hover {
             color: white;
         }
-        .sideNav .closeBtn{
+
+        .sideNav .closeBtn {
             position: absolute;
             top: 0;
             right: 25px;
@@ -80,23 +94,26 @@
             margin-left: 50px;
         }
 
-        @media screen and (max-height: 450px){
-            .sideNav{
+        @media screen and (max-height: 450px) {
+            .sideNav {
                 padding-top: 15px;
             }
-            .sideNav a{
+
+            .sideNav a {
                 font-size: 18px;
             }
         }
-        .bar1, .bar2, .bar3{
+
+        .bar1, .bar2, .bar3 {
             width: 35px;
             height: 5px;
             background-color: #adb5bd;
             margin: 6px 0;
             transition: 0.4s;
         }
-        .content_bg{
-            background: rgba(41,41,41,0.5);
+
+        .content_bg {
+            background: rgba(41, 41, 41, 0.5);
             color: white;
             padding-left: 18px;
             padding-right: 18px;
@@ -115,7 +132,8 @@
             <h1 id="welcome" class="col-12 text-white text-center display-1 animatioFadeIn">Witaj</h1>
         </div>
         <div class="row">
-            <h1 id="aboutMe" class="col-12 text-white text-center fontStyle animatioFadeIn">Nazywam się Bartek i to moja strona</h1>
+            <h1 id="aboutMe" class="col-12 text-white text-center fontStyle animatioFadeIn">Nazywam się Bartek i to moja
+                strona</h1>
         </div>
     </div>
     <div class="container-fluid my_bg_3">
@@ -132,30 +150,49 @@
         <div class="row" style="height: 8%">
         </div>
         <div class="container">
-        <div class="row">
-            <h1 class="ml-lg-5 text-white fontStyle">Jestem studentem IV roku Informatyki na Politechnice Lubelskiej</h1>
-        </div>
-        <div class="row">
-            <h3 class="ml-5 text-white fontStyle">Moje umiejętności:</h3>
-        </div>
-        <ul class="list-group list-group-flush pl-4 fontSize fontStyle" style="width: 40%;">
-            <li class="list-group-item my_bg_2">PHP</li>
-            <li class="list-group-item my_bg_2">JavaScript</li>
-            <li class="list-group-item my_bg_2">MySQL</li>
-            <li class="list-group-item my_bg_2">Java</li>
-            <li class="list-group-item my_bg_2">C++</li>
-            <li class="list-group-item my_bg_2">HTML 5</li>
-            <li class="list-group-item my_bg_2">Git</li>
-            <li class="list-group-item my_bg_2">Framework Symfony</li>
+            <div class="row">
+                <h1 class="ml-lg-5 text-white fontStyle">Jestem studentem IV roku Informatyki na Politechnice
+                    Lubelskiej</h1>
+            </div>
+            <div class="row">
+                <h3 class="ml-5 text-white fontStyle">Moje umiejętności:</h3>
+            </div>
+            <ul class="list-group list-group-flush pl-4 fontSize fontStyle" style="width: 40%;">
+                <li class="list-group-item my_bg_2">PHP</li>
+                <li class="list-group-item my_bg_2">JavaScript</li>
+                <li class="list-group-item my_bg_2">MySQL</li>
+                <li class="list-group-item my_bg_2">Java</li>
+                <li class="list-group-item my_bg_2">C++</li>
+                <li class="list-group-item my_bg_2">HTML 5</li>
+                <li class="list-group-item my_bg_2">Git</li>
+                <li class="list-group-item my_bg_2">Framework Symfony</li>
 
-        </ul>
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid my_bg_3">
+        <div class="row" style="height: 30%">
+
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <span class="display-1 content_bg">Kontakt</span>
+            </div>
         </div>
     </div>
     <div class="container-fluid my_bg_1 vh-100 min-vh-100">
-        <div class="row" style="height: 33%">
-        </div>
-        <div class="">
+        <div class="row" style="height: 8%;">
 
+        </div>
+        <div class="container">
+            <div class="row pb-4">
+                <h1 class="ml-lg-5 col-lg-4 text-white fontStyle">Mój adres e-mail:</h1>
+                <h1 class="ml-lg-5 col-2 text-white fontStyle">barwieleba@gmail.com</h1>
+            </div>
+            <div class="row">
+                <h1 class="ml-lg-5 col-lg-4 text-white fontStyle">Mój numer telefonu:</h1>
+                <h1 class="ml-lg-5 col-2 text-white fontStyle">781484535</h1>
+            </div>
         </div>
     </div>
     <div id="sideNavId" class="sideNav">
@@ -165,11 +202,12 @@
         <a href="#">Kontakt</a>
     </div>
     <script>
-        function openNav(){
-            document.getElementById("sideNavId").style.width="250px";
+        function openNav() {
+            document.getElementById("sideNavId").style.width = "250px";
         }
-        function closeNav(){
-            document.getElementById("sideNavId").style="0";
+
+        function closeNav() {
+            document.getElementById("sideNavId").style = "0";
         }
     </script>
 {% endblock %}
