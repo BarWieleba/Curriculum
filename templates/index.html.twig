@@ -2,6 +2,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    <link href="{{ asset('css/sideNavStyle.css') }}" rel="stylesheet"/>
 {% endblock %}
 
 {% block body %}
@@ -64,7 +65,7 @@
             }
         }
 
-        .sideNav {
+        /*.sideNav {
             height: 100%;
             width: 0;
             position: fixed;
@@ -122,13 +123,8 @@
             padding-left: 18px;
             padding-right: 18px;
             padding-bottom: 10px;
-        }
+        }*/
     </style>
-    <span onclick="openNav()" style="top: 5%; left: 3%; z-index: 2; position: fixed;">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-    </span>
     <div class="container-fluid my_bg_1 vh-100 min-vh-100" id="mainPage">
         <div class="row" style="height: 33%">
         </div>
@@ -200,6 +196,11 @@
         </div>
     </div>
 
+    <span onclick="openNav()" style="top: 5%; left: 3%; z-index: 2; position: fixed;">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+    </span>
     <div id="sideNavId" class="sideNav">
         <a href="javascript:void(0)" class="closeBtn" onclick="closeNav()">&times;</a>
         <a href="javascript:void(0)" onclick="callScroll('mainPage')">Strona główna</a>

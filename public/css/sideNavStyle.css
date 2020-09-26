@@ -1,0 +1,59 @@
+.sideNav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 4;
+    top: 0;
+    left: 0;
+    background: #062c33;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+}
+
+.sideNav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #adb5bd;
+    display: block;
+    transition: 0.3s;
+}
+
+.sideNav a:hover {
+    color: white;
+}
+
+.sideNav .closeBtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+    .sideNav {
+        padding-top: 15px;
+    }
+
+    .sideNav a {
+        font-size: 18px;
+    }
+}
+
+.bar1, .bar2, .bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: #adb5bd;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+.content_bg {
+    background: rgba(41, 41, 41, 0.5);
+    color: white;
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-bottom: 10px;
+}
