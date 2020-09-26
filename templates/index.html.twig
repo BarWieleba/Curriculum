@@ -125,7 +125,7 @@
         <div class="bar2"></div>
         <div class="bar3"></div>
     </span>
-    <div class="container-fluid my_bg_1 vh-100 min-vh-100">
+    <div class="container-fluid my_bg_1 vh-100 min-vh-100" id="mainPage">
         <div class="row" style="height: 33%">
         </div>
         <div class="row">
@@ -136,7 +136,7 @@
                 strona</h1>
         </div>
     </div>
-    <div class="container-fluid my_bg_3">
+    <div class="container-fluid my_bg_3" id="aboutMePage">
         <div class="row" style="height: 30%">
 
         </div>
@@ -170,7 +170,7 @@
             </ul>
         </div>
     </div>
-    <div class="container-fluid my_bg_3">
+    <div class="container-fluid my_bg_3" id="contactPage">
         <div class="row" style="height: 30%">
 
         </div>
@@ -197,11 +197,11 @@
     </div>
     <div id="sideNavId" class="sideNav">
         <a href="javascript:void(0)" class="closeBtn" onclick="closeNav()">&times;</a>
-        <a href="#">Strona główna</a>
-        <a href="#">O mnie</a>
-        <a href="#">Kontakt</a>
+        <a href="javascript:void(0)" onclick="callScroll('mainPage')">Strona główna</a>
+        <a href="javascript:void(0)" onclick="callScroll('aboutMePage')">O mnie</a>
+        <a href="javascript:void(0)" onclick="callScroll('contactPage')">Kontakt</a>
     </div>
-    <script>
+    {#<script>
         function openNav() {
             document.getElementById("sideNavId").style.width = "250px";
         }
@@ -209,5 +209,9 @@
         function closeNav() {
             document.getElementById("sideNavId").style = "0";
         }
-    </script>
+        let callScroll = function scrollTo(id){
+            document.getElementById(id).scrollIntoView({behavior: "smooth"});
+        }
+    </script>#}
+    <script type="text/javascript" src=></script>
 {% endblock %}
