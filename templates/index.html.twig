@@ -1,10 +1,14 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
 {% block body %}
     <style>
         .my_bg_1 {
             /*background-color: #b43bdb;*/
-            background-image: url("images/bg.png");
+            background-image: url("{{ asset('images/bg.png') }}");
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
@@ -24,7 +28,7 @@
         }
 
         .my_bg_3 {
-            background-image: url("images/bg_card_2_blur.png");
+            background-image: url("{{ asset('images/bg_card_2_blur.png') }}");
             background-attachment: fixed;
             height: 300px;
         }
@@ -195,6 +199,7 @@
             </div>
         </div>
     </div>
+
     <div id="sideNavId" class="sideNav">
         <a href="javascript:void(0)" class="closeBtn" onclick="closeNav()">&times;</a>
         <a href="javascript:void(0)" onclick="callScroll('mainPage')">Strona główna</a>
@@ -213,5 +218,5 @@
             document.getElementById(id).scrollIntoView({behavior: "smooth"});
         }
     </script>#}
-    <script type="text/javascript" src=></script>
+    <script type="text/javascript" src={{ asset('js/navSideBar.js') }}></script>
 {% endblock %}
