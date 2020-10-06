@@ -24,7 +24,7 @@
             height: 100vh;
         }
 
-        .my_bg_2 {
+        .my_bg_2_tr {
             background: transparent;
         }
 
@@ -64,6 +64,12 @@
                 opacity: 1;
             }
         }
+
+        .modal-open {
+            overflow: auto;
+            padding-right: 0 !important;
+        }
+
 
         /*.sideNav {
             height: 100%;
@@ -157,17 +163,20 @@
             <div class="row">
                 <h3 class="ml-5 text-white fontStyle">Moje umiejętności:</h3>
             </div>
-            <ul class="list-group list-group-flush pl-4 fontSize fontStyle" style="width: 40%;">
-                <li class="list-group-item my_bg_2">PHP</li>
-                <li class="list-group-item my_bg_2">JavaScript</li>
-                <li class="list-group-item my_bg_2">MySQL</li>
-                <li class="list-group-item my_bg_2">Java</li>
-                <li class="list-group-item my_bg_2">C++</li>
-                <li class="list-group-item my_bg_2">HTML 5</li>
-                <li class="list-group-item my_bg_2">Git</li>
-                <li class="list-group-item my_bg_2">Framework Symfony</li>
-
-            </ul>
+            <div class="row">
+                <ul class="list-group list-group-flush pl-4 fontSize fontStyle col-6" style="width: 40%;">
+                    <li class="list-group-item" style="background: transparent;">PHP</li>
+                    <li class="list-group-item" style="background: transparent;">JavaScript</li>
+                    <li class="list-group-item" style="background: transparent;">MySQL</li>
+                    <li class="list-group-item" style="background: transparent;">Java</li>
+                    <li class="list-group-item" style="background: transparent;">C++</li>
+                    <li class="list-group-item" style="background: transparent;">HTML 5</li>
+                </ul>
+                <ul class="list-group list-group-flush pl-4 fontSize fontStyle col-6">
+                    <li class="list-group-item" style="background: transparent;">Git</li>
+                    <li class="list-group-item" style="background: transparent;">Framework Symfony</li>
+                </ul>
+            </div>
         </div>
     </div>
     <div class="container-fluid my_bg_3" id="contactPage">
@@ -195,6 +204,49 @@
             </div>
         </div>
     </div>
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                {#<form method="post">#}
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        {% if error %}
+                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+                        <div id="errorAjax" class="alert alert-danger"></div>
+                        {% if app.user %}
+                            <div class="mb-3">
+                                You are logged in as {{ app.user.username }}, <a
+                                        href="{{ path('app_logout') }}">Logout</a>
+                            </div>
+                        {% endif %}
+
+                        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                        <label for="inputUsername">Username</label>
+                        <input type="text" value="{{ last_username }}" name="username" id="inputUsername"
+                               class="form-control" required autofocus>
+                        <label for="inputPassword">Password</label>
+                        <input type="password" name="password" id="inputPassword" class="form-control" required>
+
+                        <input type="hidden" name="_csrf_token" id="_csrf_token"
+                               value="{{ csrf_token('authenticate') }}"
+                        >
+                    </div>
+                    <div class="modal-footer">
+                        <button id="closeButton" type="button" class="btn btn-danger" data-dismiss="modal">Close
+                        </button>
+                         <button id="logInButton" type="button" class="btn btn-primary" >Log in</button>
+                        {#<button id="logInButton" type="submit" class="btn btn-primary">Log in</button>#}
+                    </div>
+                {#</form>#}
+            </div>
+        </div>
+    </div>
+    {# add modal #}
+    {# {{ render(path('app_login')) }} #}
+
 
     <span onclick="openNav()" style="top: 5%; left: 3%; z-index: 2; position: fixed;">
         <div class="bar1"></div>
@@ -206,8 +258,9 @@
         <a href="javascript:void(0)" onclick="callScroll('mainPage')">Strona główna</a>
         <a href="javascript:void(0)" onclick="callScroll('aboutMePage')">O mnie</a>
         <a href="javascript:void(0)" onclick="callScroll('contactPage')">Kontakt</a>
+        <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal">Jakiś modal</a>
     </div>
-    {#<script>
+    {# <script>
         function openNav() {
             document.getElementById("sideNavId").style.width = "250px";
         }
@@ -218,6 +271,49 @@
         let callScroll = function scrollTo(id){
             document.getElementById(id).scrollIntoView({behavior: "smooth"});
         }
-    </script>#}
+    </script> #}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
     <script type="text/javascript" src={{ asset('js/navSideBar.js') }}></script>
+    <script>
+        $('#myModal').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus')
+        });
+
+        $(document).ready(function (){
+            $('#errorAjax').hide();
+            $('#logInButton').click(function (){
+                let reload = true;
+                $.ajax({
+                    type: "POST",
+                    url: '{{ path('app_login') }}',
+                    data:{
+                        username: document.getElementById('inputUsername').value,
+                        password: document.getElementById('inputPassword').value,
+                        _csrf_token: document.getElementById('_csrf_token').value,
+                    },
+                    complete: function (response){
+                        /*alert(response.responseText);*/
+                        if (reload){
+                            location.reload();
+                        }
+                    },
+                    success: function (response){
+                        /*alert(response.responseText);*/
+                        if (reload){
+                            location.reload();
+                        }
+                    },
+                    error: function (response){
+                        /*alert(response.responseText);*/
+                        reload = false;
+                        $('#errorAjax').show().text("Nieprawidłowy login lub hasło");
+                    }
+                });
+            })
+        });
+    </script>
 {% endblock %}
