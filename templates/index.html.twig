@@ -3,6 +3,7 @@
 {% block stylesheets %}
     {{ parent() }}
     <link href="{{ asset('css/sideNavStyle.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/loader.css') }}" rel="stylesheet"/>
 {% endblock %}
 
 {% block body %}
@@ -131,6 +132,7 @@
             padding-bottom: 10px;
         }*/
     </style>
+    {# welcome page container #}
     <div class="container-fluid my_bg_1 vh-100 min-vh-100" id="mainPage">
         <div class="row" style="height: 33%">
         </div>
@@ -142,6 +144,8 @@
                 strona</h1>
         </div>
     </div>
+    {# end of welcome page container #}
+    {# about me container #}
     <div class="container-fluid my_bg_3" id="aboutMePage">
         <div class="row" style="height: 30%">
 
@@ -152,6 +156,8 @@
             </div>
         </div>
     </div>
+    {# end of about me container #}
+    {# skill info container #}
     <div class="container-fluid my_bg_1 vh-100 min-vh-100">
         <div class="row" style="height: 8%">
         </div>
@@ -179,6 +185,8 @@
             </div>
         </div>
     </div>
+    {# end of skill info container #}
+    {# contact container #}
     <div class="container-fluid my_bg_3" id="contactPage">
         <div class="row" style="height: 30%">
 
@@ -189,6 +197,8 @@
             </div>
         </div>
     </div>
+    {# end of contact container #}
+    {# container about personal info #}
     <div class="container-fluid my_bg_1 vh-100 min-vh-100">
         <div class="row" style="height: 8%;">
 
@@ -204,48 +214,98 @@
             </div>
         </div>
     </div>
+    {# end of personal info conatiner #}
+    {# modal for logging in #}
     <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                {#<form method="post">#}
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        {% if error %}
+                {# <form method="post"> #}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    {# {% if error %}
                             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                        {% endif %}
-                        <div id="errorAjax" class="alert alert-danger"></div>
-                        {% if app.user %}
-                            <div class="mb-3">
-                                You are logged in as {{ app.user.username }}, <a
-                                        href="{{ path('app_logout') }}">Logout</a>
-                            </div>
-                        {% endif %}
+                        {% endif %} #}
+                    <div id="errorAjax" class="alert alert-danger"></div>
+                    {% if app.user %}
+                        <div class="mb-3">
+                            You are logged in as {{ app.user.username }}, <a
+                                    href="{{ path('app_logout') }}">Wyloguj się</a>
+                        </div>
+                    {% endif %}
 
-                        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-                        <label for="inputUsername">Username</label>
-                        <input type="text" value="{{ last_username }}" name="username" id="inputUsername"
-                               class="form-control" required autofocus>
-                        <label for="inputPassword">Password</label>
-                        <input type="password" name="password" id="inputPassword" class="form-control" required>
+                    <h1 class="h3 mb-3 font-weight-normal">Zaloguj się</h1>
+                    <label for="inputUsername">Nazwa użytkownika</label>
+                    <input type="text" value="{{ last_username }}" name="username" id="inputUsername"
+                           class="form-control" required autofocus>
+                    <label for="inputPassword">Hasło</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control" required>
 
-                        <input type="hidden" name="_csrf_token" id="_csrf_token"
-                               value="{{ csrf_token('authenticate') }}"
-                        >
-                    </div>
-                    <div class="modal-footer">
-                        <button id="closeButton" type="button" class="btn btn-danger" data-dismiss="modal">Close
-                        </button>
-                         <button id="logInButton" type="button" class="btn btn-primary" >Log in</button>
-                        {#<button id="logInButton" type="submit" class="btn btn-primary">Log in</button>#}
-                    </div>
-                {#</form>#}
+                    <input type="hidden" name="_csrf_token" id="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
+                </div>
+                <div class="modal-footer">
+                    <button id="closeButton" type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+                    <button id="logInButton" type="button" class="btn btn-primary">Zaloguj</button>
+                    {# <button id="logInButton" type="submit" class="btn btn-primary">Log in</button> #}
+                </div>
+                {# </form> #}
             </div>
         </div>
     </div>
-    {# add modal #}
-    {# {{ render(path('app_login')) }} #}
+    {# end of log in modal #}
+
+    {# registration modal #}
+
+    <div id="regModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                {#modal body#}
+                <div id="mainModalBody" class="modal-body">
+                    <div id="errorRegAjax" class="alert alert-danger"></div>
+                    {% if app.user %}
+                        <div class="mb-3">
+                            You are logged in as {{ app.user.username }}, <a
+                                    href="{{ path('app_logout') }}">Wyloguj się</a>
+                        </div>
+                    {% endif %}
+                    <h1 class="h3 mb-3 font-weight-normal">Zarejestruj się</h1>
+                    <label for="inputRegisterName">Nazwa użytkownika</label>
+                    <input type="text" name="registerUsername" id="inputRegisterName"
+                           class="form-control" required autofocus>
+                    <p id="inputRegWarning" class="small"></p>
+                    <label for="inputRegisterPassword">Hasło</label>
+                    <input type="password" name="registerPassword" id="inputRegisterPassword" class="form-control"
+                           required>
+                    <p class="small passRegWarning"></p>
+                    <label for="inputRepeatRegisterPassword">Powtórz hasło</label>
+                    <input type="password" name="registerRepeatPassword" id="inputRepeatRegisterPassword"
+                           class="form-control" required>
+                    <p class="small passRegWarning"></p>
+                </div>
+                {#modal body end#}
+                {#modal loader#}
+                <div id="loaderModalBody" class="modal-body align-items-center" >
+                    <div class="loader"></div>
+                </div>
+                {#modal loader end#}
+                <div class="modal-footer">
+                    <button id="closeRegButton" type="button" class="btn btn-danger" data-dismiss="modal">Zamknij
+                    </button>
+                    <button id="registerButton" type="button" class="btn btn-primary">
+                        Zarejestruj
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# end of registration modal #}
 
 
     <span onclick="openNav()" style="top: 5%; left: 3%; z-index: 2; position: fixed;">
@@ -258,7 +318,13 @@
         <a href="javascript:void(0)" onclick="callScroll('mainPage')">Strona główna</a>
         <a href="javascript:void(0)" onclick="callScroll('aboutMePage')">O mnie</a>
         <a href="javascript:void(0)" onclick="callScroll('contactPage')">Kontakt</a>
-        <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal">Jakiś modal</a>
+        {% if app.user %}
+            <a href="{{ path('app_logout') }}">Wyloguj</a>
+        {% else %}
+            <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal">Logowanie</a>
+            <a href="javascript:void(0)" data-toggle="modal" data-target="#regModal">Rejestracja</a>
+        {% endif %}
+
     </div>
     {# <script>
         function openNav() {
@@ -283,37 +349,92 @@
             $('#myInput').trigger('focus')
         });
 
-        $(document).ready(function (){
+        $(document).ready(function () {
+            //login jquery
             $('#errorAjax').hide();
-            $('#logInButton').click(function (){
+            $('#logInButton').click(function () {
                 let reload = true;
                 $.ajax({
                     type: "POST",
                     url: '{{ path('app_login') }}',
-                    data:{
+                    data: {
                         username: document.getElementById('inputUsername').value,
                         password: document.getElementById('inputPassword').value,
                         _csrf_token: document.getElementById('_csrf_token').value,
                     },
-                    complete: function (response){
+                    complete: function (response) {
                         /*alert(response.responseText);*/
-                        if (reload){
+                        if (reload) {
                             location.reload();
                         }
                     },
-                    success: function (response){
+                    success: function (response) {
                         /*alert(response.responseText);*/
-                        if (reload){
+                        if (reload) {
                             location.reload();
                         }
                     },
-                    error: function (response){
+                    error: function (response) {
                         /*alert(response.responseText);*/
                         reload = false;
                         $('#errorAjax').show().text("Nieprawidłowy login lub hasło");
                     }
                 });
-            })
+            });
+            //end login jquery
+        });
+        $(document).ready(function (){
+            //register jquery
+            $('#loaderModalBody').hide(); //hide loader
+            $('#errorRegAjax').hide();
+            $('#registerButton').click(function () {
+                let closeModal = true;
+                $('#loaderModalBody').show();
+                $('#mainModalBody').hide();
+                if(!($('#inputRegisterName').val() && $('#inputRegisterPassword').val())){
+                    $('#errorRegAjax').show().text("Puste pola");
+                    return;
+                }
+                $.ajax({
+                    type: "POST",
+                    url: '{{ path('registration') }}',
+                    data: {
+                        username: document.getElementById('inputRegisterName').value,
+                        password: document.getElementById('inputRegisterPassword').value,
+                    },
+                    complete: function (response) {
+                        $('#loaderModalBody').hide();
+                        $('#mainModalBody').show();
+                        if (closeModal){
+                            $('#regModal').modal('toggle');
+                        }
+                    },
+                    success: function (response) {
+                    },
+                    error: function (response) {
+                        $('#errorRegAjax').show().text(response.responseText);
+                        closeModal=false;
+                    }
+                });
+            });
+            //end register jquery
+        });
+
+        $(document).ready(function (){
+            //register checkpassword
+            $('#inputRepeatRegisterPassword').keyup(function () {
+                let firstPassField = $('#inputRegisterPassword').val();
+                let secondPassField = $('#inputRepeatRegisterPassword').val();
+
+                if (firstPassField === secondPassField) {
+                    $('.passRegWarning').hide();
+                    $('#registerButton').enable();
+                } else {
+                    $('.passRegWarning').show().text("Hasła się nie zgadzają");
+                    $('#registerButton').disable();
+                }
+            });
+            //end register checkpassword
         });
     </script>
 {% endblock %}
