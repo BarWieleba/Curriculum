@@ -223,7 +223,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                <div class="modal-body">
+                <div id="mainLogModalBody" class="modal-body">
                     {# {% if error %}
                             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                         {% endif %} #}
@@ -246,6 +246,10 @@
                            value="{{ csrf_token('authenticate') }}"
                     >
                 </div>
+                <div id="secLogModalBody" class="modal-body align-items-center">
+                    <div class="loader"></div>
+                </div>
+
                 <div class="modal-footer">
                     <button id="closeButton" type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
                     <button id="logInButton" type="button" class="btn btn-primary">Zaloguj</button>
@@ -268,6 +272,7 @@
                 {#modal body#}
                 <div id="mainModalBody" class="modal-body">
                     <div id="errorRegAjax" class="alert alert-danger"></div>
+                    <div id="successRegAjax" class="alert alert-success"></div>
                     {% if app.user %}
                         <div class="mb-3">
                             You are logged in as {{ app.user.username }}, <a
@@ -345,14 +350,16 @@
     {{ parent() }}
     <script type="text/javascript" src={{ asset('js/navSideBar.js') }}></script>
     <script>
-        $('#myModal').on('shown.bs.modal', function () {
-            $('#myInput').trigger('focus')
+        $('.modal').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus');
         });
-
         $(document).ready(function () {
             //login jquery
+            $('#secLogModalBody').hide(); //hide loader
             $('#errorAjax').hide();
             $('#logInButton').click(function () {
+                $('#mainLogModalBody').hide();
+                $('#secLogModalBody').show();
                 let reload = true;
                 $.ajax({
                     type: "POST",
@@ -364,6 +371,8 @@
                     },
                     complete: function (response) {
                         /*alert(response.responseText);*/
+                        $('#mainLogModalBody').show();
+                        $('#secLogModalBody').hide();
                         if (reload) {
                             location.reload();
                         }
@@ -387,6 +396,7 @@
             //register jquery
             $('#loaderModalBody').hide(); //hide loader
             $('#errorRegAjax').hide();
+            $('#successRegAjax').hide();
             $('#registerButton').click(function () {
                 let closeModal = true;
                 $('#loaderModalBody').show();
@@ -406,7 +416,10 @@
                         $('#loaderModalBody').hide();
                         $('#mainModalBody').show();
                         if (closeModal){
-                            $('#regModal').modal('toggle');
+                            $('#successRegAjax').show().text(response.responseText);
+                            setTimeout(function (){
+                                $('#regModal').modal('toggle');
+                            }, 1000);
                         }
                     },
                     success: function (response) {
