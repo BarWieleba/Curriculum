@@ -1,0 +1,139 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>
+        .my_bg_1{
+            /*background-color: #b43bdb;*/
+            background-image: url("images/bg.png");
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+        }
+        .blur{
+            background: #292929;
+            opacity: 1%;
+            backdrop-filter: blur(8px);
+            height: 100vh;
+        }
+        .my_bg_2{
+            background: transparent;
+        }
+        .animatioFadeIn{
+            animation: fade-in 2s forwards;
+        }
+        #welcome{
+            animation-delay: 0s;
+        }
+        #aboutMe{
+            opacity: 0;
+            animation-delay: 1s;
+        }
+        .fontStyle{
+            font-weight: 300;
+            line-height: 1.2;
+        }
+        .fontSize{
+            font-size: 2.5rem;
+        }
+
+        @keyframes fade-in {
+            from {opacity: 0;}
+            to   {opacity: 1;}
+        }
+
+        .sideNav{
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 4;
+            top: 0;
+            left: 0;
+            background: #062c33;
+            overflow-x: hidden;
+            padding-top: 60px;
+            transition: 0.5s;
+        }
+        .sideNav a{
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818182;
+            display: block;
+            transition: 0.3s;
+        }
+        .sideNav a:hover{
+            color: white;
+        }
+        .sideNav .closeBtn{
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        @media screen and (max-height: 450px){
+            .sideNav{
+                padding-top: 15px;
+            }
+            .sideNav a{
+                font-size: 18px;
+            }
+        }
+        .bar1, .bar2, .bar3{
+            width: 35px;
+            height: 5px;
+            background-color: #818182;
+            margin: 6px 0;
+            transition: 0.4s;
+        }
+    </style>
+    <span onclick="openNav()" style="top: 5%; left: 3%; z-index: 2; position: fixed;">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+    </span>
+    <div class="container-fluid my_bg_1 vh-100 min-vh-100">
+        <div class="row" style="height: 33%">
+        </div>
+        <div class="row">
+            <h1 id="welcome" class="col-12 text-white text-center display-1 animatioFadeIn">Witaj</h1>
+        </div>
+        <div class="row">
+            <h1 id="aboutMe" class="col-12 text-white text-center fontStyle animatioFadeIn">Nazywam się Bartek i to moja strona</h1>
+        </div>
+    </div>
+    <div class="container-fluid my_bg_1 vh-100 min-vh-100">
+        <div class="row" style="height: 13%">
+        </div>
+        <div class="row">
+            <h1 class="ml-5 text-white fontStyle">Jestem studentem IV roku Informatyki na Politechnice Lubelskiej</h1>
+        </div>
+        <div class="row">
+            <h3 class="ml-5 text-white fontStyle">Interesuję się językami:</h3>
+        </div>
+        <ul class="list-group list-group-flush pl-4 fontSize fontStyle" style="width: 30%;">
+            <li class="list-group-item my_bg_2">PHP</li>
+            <li class="list-group-item my_bg_2">JavaScript</li>
+            <li class="list-group-item my_bg_2">Java</li>
+            <li class="list-group-item my_bg_2">C++</li>
+            <li class="list-group-item my_bg_2">HTML 5</li>
+        </ul>
+    </div>
+    <div id="sideNavId" class="sideNav">
+        <a href="javascript:void(0)" class="closeBtn" onclick="closeNav()">&times;</a>
+        <a href="#">Strona główna</a>
+        <a href="#">O mnie</a>
+        <a href="#">Kontakt</a>
+    </div>
+    <script>
+        function openNav(){
+            document.getElementById("sideNavId").style.width="250px";
+        }
+        function closeNav(){
+            document.getElementById("sideNavId").style="0";
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,457 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/sideNavStyle.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/loader.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+    <style>
+        .my_bg_1 {
+            /*background-color: #b43bdb;*/
+            background-image: url("{{ asset('images/bg.png') }}");
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+        }
+
+        .blur {
+            background: #292929;
+            opacity: 1%;
+            backdrop-filter: blur(8px);
+            height: 100vh;
+        }
+
+        .my_bg_2_tr {
+            background: transparent;
+        }
+
+        .my_bg_3 {
+            background-image: url("{{ asset('images/bg_card_2_blur.png') }}");
+            background-attachment: fixed;
+            height: 300px;
+        }
+
+        .animatioFadeIn {
+            animation: fade-in 2s forwards;
+        }
+
+        #welcome {
+            animation-delay: 0s;
+        }
+
+        #aboutMe {
+            opacity: 0;
+            animation-delay: 1s;
+        }
+
+        .fontStyle {
+            font-weight: 300;
+            line-height: 1.2;
+        }
+
+        .fontSize {
+            font-size: 2.5rem;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-open {
+            overflow: auto;
+            padding-right: 0 !important;
+        }
+
+
+        /*.sideNav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 4;
+            top: 0;
+            left: 0;
+            background: #062c33;
+            overflow-x: hidden;
+            padding-top: 60px;
+            transition: 0.5s;
+        }
+
+        .sideNav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #adb5bd;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sideNav a:hover {
+            color: white;
+        }
+
+        .sideNav .closeBtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sideNav {
+                padding-top: 15px;
+            }
+
+            .sideNav a {
+                font-size: 18px;
+            }
+        }
+
+        .bar1, .bar2, .bar3 {
+            width: 35px;
+            height: 5px;
+            background-color: #adb5bd;
+            margin: 6px 0;
+            transition: 0.4s;
+        }
+
+        .content_bg {
+            background: rgba(41, 41, 41, 0.5);
+            color: white;
+            padding-left: 18px;
+            padding-right: 18px;
+            padding-bottom: 10px;
+        }*/
+    </style>
+    {# welcome page container #}
+    <div class="container-fluid my_bg_1 vh-100 min-vh-100" id="mainPage">
+        <div class="row" style="height: 33%">
+        </div>
+        <div class="row">
+            <h1 id="welcome" class="col-12 text-white text-center display-1 animatioFadeIn">Witaj</h1>
+        </div>
+        <div class="row">
+            <h1 id="aboutMe" class="col-12 text-white text-center fontStyle animatioFadeIn">Nazywam się Bartek i to moja
+                strona</h1>
+        </div>
+    </div>
+    {# end of welcome page container #}
+    {# about me container #}
+    <div class="container-fluid my_bg_3" id="aboutMePage">
+        <div class="row" style="height: 30%">
+
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <span class="display-1 content_bg">O mnie</span>
+            </div>
+        </div>
+    </div>
+    {# end of about me container #}
+    {# skill info container #}
+    <div class="container-fluid my_bg_1 vh-100 min-vh-100">
+        <div class="row" style="height: 8%">
+        </div>
+        <div class="container">
+            <div class="row">
+                <h1 class="ml-lg-5 text-white fontStyle">Jestem studentem IV roku Informatyki na Politechnice
+                    Lubelskiej</h1>
+            </div>
+            <div class="row">
+                <h3 class="ml-5 text-white fontStyle">Moje umiejętności:</h3>
+            </div>
+            <div class="row">
+                <ul class="list-group list-group-flush pl-4 fontSize fontStyle col-6" style="width: 40%;">
+                    <li class="list-group-item" style="background: transparent;">PHP</li>
+                    <li class="list-group-item" style="background: transparent;">JavaScript</li>
+                    <li class="list-group-item" style="background: transparent;">MySQL</li>
+                    <li class="list-group-item" style="background: transparent;">Java</li>
+                    <li class="list-group-item" style="background: transparent;">C++</li>
+                    <li class="list-group-item" style="background: transparent;">HTML 5</li>
+                </ul>
+                <ul class="list-group list-group-flush pl-4 fontSize fontStyle col-6">
+                    <li class="list-group-item" style="background: transparent;">Git</li>
+                    <li class="list-group-item" style="background: transparent;">Framework Symfony</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {# end of skill info container #}
+    {# contact container #}
+    <div class="container-fluid my_bg_3" id="contactPage">
+        <div class="row" style="height: 30%">
+
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <span class="display-1 content_bg">Kontakt</span>
+            </div>
+        </div>
+    </div>
+    {# end of contact container #}
+    {# container about personal info #}
+    <div class="container-fluid my_bg_1 vh-100 min-vh-100">
+        <div class="row" style="height: 8%;">
+
+        </div>
+        <div class="container">
+            <div class="row pb-4">
+                <h1 class="ml-lg-5 col-lg-4 text-white fontStyle">Mój adres e-mail:</h1>
+                <h1 class="ml-lg-5 col-2 text-white fontStyle">barwieleba@gmail.com</h1>
+            </div>
+            <div class="row">
+                <h1 class="ml-lg-5 col-lg-4 text-white fontStyle">Mój numer telefonu:</h1>
+                <h1 class="ml-lg-5 col-2 text-white fontStyle">781484535</h1>
+            </div>
+            <div class="row mt-4">
+                <h1 class="ml-lg-5 col-lg-4 text-white fontStyle">CV:</h1>
+                <a href="{{ asset("/files/bartlomiej_wieleba_cv.pdf") }}" class="ml-lg-5 col-2 btn btn-primary my-auto" download="bartlomiej_wieleba_cv.pdf">Moje CV</a>
+            </div>
+        </div>
+    </div>
+    {# end of personal info conatiner #}
+    {# modal for logging in #}
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                {# <form method="post"> #}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div id="mainLogModalBody" class="modal-body">
+                    {# {% if error %}
+                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %} #}
+                    <div id="errorAjax" class="alert alert-danger"></div>
+                    {% if app.user %}
+                        <div class="mb-3">
+                            You are logged in as {{ app.user.username }}, <a
+                                    href="{{ path('app_logout') }}">Wyloguj się</a>
+                        </div>
+                    {% endif %}
+
+                    <h1 class="h3 mb-3 font-weight-normal">Zaloguj się</h1>
+                    <label for="inputUsername">Nazwa użytkownika</label>
+                    <input type="text" value="{{ last_username }}" name="username" id="inputUsername"
+                           class="form-control" required autofocus>
+                    <label for="inputPassword">Hasło</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control" required>
+
+                    <input type="hidden" name="_csrf_token" id="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
+                </div>
+                <div id="secLogModalBody" class="modal-body align-items-center">
+                    <div class="loader"></div>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="closeButton" type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+                    <button id="logInButton" type="button" class="btn btn-primary">Zaloguj</button>
+                    {# <button id="logInButton" type="submit" class="btn btn-primary">Log in</button> #}
+                </div>
+                {# </form> #}
+            </div>
+        </div>
+    </div>
+    {# end of log in modal #}
+
+    {# registration modal #}
+
+    <div id="regModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                {#modal body#}
+                <div id="mainModalBody" class="modal-body">
+                    <div id="errorRegAjax" class="alert alert-danger"></div>
+                    <div id="successRegAjax" class="alert alert-success"></div>
+                    {% if app.user %}
+                        <div class="mb-3">
+                            You are logged in as {{ app.user.username }}, <a
+                                    href="{{ path('app_logout') }}">Wyloguj się</a>
+                        </div>
+                    {% endif %}
+                    <h1 class="h3 mb-3 font-weight-normal">Zarejestruj się</h1>
+                    <label for="inputRegisterName">Nazwa użytkownika</label>
+                    <input type="text" name="registerUsername" id="inputRegisterName"
+                           class="form-control" required autofocus>
+                    <p id="inputRegWarning" class="small"></p>
+                    <label for="inputRegisterPassword">Hasło</label>
+                    <input type="password" name="registerPassword" id="inputRegisterPassword" class="form-control"
+                           required>
+                    <p class="small passRegWarning"></p>
+                    <label for="inputRepeatRegisterPassword">Powtórz hasło</label>
+                    <input type="password" name="registerRepeatPassword" id="inputRepeatRegisterPassword"
+                           class="form-control" required>
+                    <p class="small passRegWarning"></p>
+                </div>
+                {#modal body end#}
+                {#modal loader#}
+                <div id="loaderModalBody" class="modal-body align-items-center" >
+                    <div class="loader"></div>
+                </div>
+                {#modal loader end#}
+                <div class="modal-footer">
+                    <button id="closeRegButton" type="button" class="btn btn-danger" data-dismiss="modal">Zamknij
+                    </button>
+                    <button id="registerButton" type="button" class="btn btn-primary">
+                        Zarejestruj
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# end of registration modal #}
+
+
+    <span onclick="openNav()" style="top: 5%; left: 3%; z-index: 2; position: fixed;">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+    </span>
+    <div id="sideNavId" class="sideNav">
+        <a href="javascript:void(0)" class="closeBtn" onclick="closeNav()">&times;</a>
+        <a href="javascript:void(0)" onclick="callScroll('mainPage')">Strona główna</a>
+        <a href="javascript:void(0)" onclick="callScroll('aboutMePage')">O mnie</a>
+        <a href="javascript:void(0)" onclick="callScroll('contactPage')">Kontakt</a>
+        {% if app.user %}
+            <a href="{{ path('app_logout') }}">Wyloguj</a>
+        {% else %}
+            <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal">Logowanie</a>
+            <a href="javascript:void(0)" data-toggle="modal" data-target="#regModal">Rejestracja</a>
+        {% endif %}
+
+    </div>
+    {# <script>
+        function openNav() {
+            document.getElementById("sideNavId").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("sideNavId").style = "0";
+        }
+        let callScroll = function scrollTo(id){
+            document.getElementById(id).scrollIntoView({behavior: "smooth"});
+        }
+    </script> #}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src={{ asset('js/navSideBar.js') }}></script>
+    <script>
+        $('.modal').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus');
+        });
+        $(document).ready(function () {
+            //login jquery
+            $('#secLogModalBody').hide(); //hide loader
+            $('#errorAjax').hide();
+            $('#logInButton').click(function () {
+                $('#mainLogModalBody').hide();
+                $('#secLogModalBody').show();
+                let reload = true;
+                $.ajax({
+                    type: "POST",
+                    url: '{{ path('app_login') }}',
+                    data: {
+                        username: document.getElementById('inputUsername').value,
+                        password: document.getElementById('inputPassword').value,
+                        _csrf_token: document.getElementById('_csrf_token').value,
+                    },
+                    complete: function (response) {
+                        /*alert(response.responseText);*/
+                        $('#mainLogModalBody').show();
+                        $('#secLogModalBody').hide();
+                        if (reload) {
+                            location.reload();
+                        }
+                    },
+                    success: function (response) {
+                        /*alert(response.responseText);*/
+                        if (reload) {
+                            location.reload();
+                        }
+                    },
+                    error: function (response) {
+                        /*alert(response.responseText);*/
+                        reload = false;
+                        $('#errorAjax').show().text("Nieprawidłowy login lub hasło");
+                    }
+                });
+            });
+            //end login jquery
+        });
+        $(document).ready(function (){
+            //register jquery
+            $('#loaderModalBody').hide(); //hide loader
+            $('#errorRegAjax').hide();
+            $('#successRegAjax').hide();
+            $('#registerButton').click(function () {
+                let closeModal = true;
+                $('#loaderModalBody').show();
+                $('#mainModalBody').hide();
+                if(!($('#inputRegisterName').val() && $('#inputRegisterPassword').val())){
+                    $('#errorRegAjax').show().text("Puste pola");
+                    return;
+                }
+                $.ajax({
+                    type: "POST",
+                    url: '{{ path('registration') }}',
+                    data: {
+                        username: document.getElementById('inputRegisterName').value,
+                        password: document.getElementById('inputRegisterPassword').value,
+                    },
+                    complete: function (response) {
+                        $('#loaderModalBody').hide();
+                        $('#mainModalBody').show();
+                        if (closeModal){
+                            $('#successRegAjax').show().text(response.responseText);
+                            setTimeout(function (){
+                                $('#regModal').modal('toggle');
+                            }, 1000);
+                        }
+                    },
+                    success: function (response) {
+                    },
+                    error: function (response) {
+                        $('#errorRegAjax').show().text(response.responseText);
+                        closeModal=false;
+                    }
+                });
+            });
+            //end register jquery
+        });
+
+        $(document).ready(function (){
+            //register checkpassword
+            $('#inputRepeatRegisterPassword').keyup(function () {
+                let firstPassField = $('#inputRegisterPassword').val();
+                let secondPassField = $('#inputRepeatRegisterPassword').val();
+
+                if (firstPassField === secondPassField) {
+                    $('.passRegWarning').hide();
+                    $('#registerButton').enable();
+                } else {
+                    $('.passRegWarning').show().text("Hasła się nie zgadzają");
+                    $('#registerButton').disable();
+                }
+            });
+            //end register checkpassword
+        });
+    </script>
+{% endblock %}
